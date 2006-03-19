@@ -13,5 +13,25 @@
 		<filter-name>login</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>demo.LoginServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>logoutServlet</servlet-name>
+		<servlet-class>demo.LogoutServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>logoutServlet</servlet-name>
+		<url-pattern>/logoutServlet</url-pattern>
+	</servlet-mapping>
 
 </web-app>
