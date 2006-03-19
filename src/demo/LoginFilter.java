@@ -17,13 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginFilter implements Filter {
 
 	private static final String HOME = "/";
+	
+	public void init(FilterConfig config) throws ServletException {
+		System.out.println("LoginFilter.init()");
+	}
 
 	/** Allow the request if the user is logged in.
 	 * Called before every request, so keep it light weight.
 	 */
 	public void doFilter(ServletRequest req, ServletResponse resp, 
-			FilterChain arg2) throws IOException, ServletException {
-		
+			FilterChain chain) throws IOException, ServletException {
+
+		System.out.println("LoginFilter.doFilter()");
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
@@ -31,12 +36,14 @@ public class LoginFilter implements Filter {
 		Object loggedInToken = request.getSession().getAttribute("LOGIN_FLAG");
 
 		if (loggedInToken != null) {
-			// User is logged in
+			// User is logged in, continue processing.
+			chain.doFilter(req, resp);
 			return;
 		}
 		
 		if (request.getRequestURI().indexOf(HOME) != -1) {
 			// User not logged in and trying to get to login page
+			chain.doFilter(req, resp);
 			return;
 		}
 			
@@ -51,11 +58,7 @@ public class LoginFilter implements Filter {
 		}
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-	}
-
 	public void destroy() {
-		// TODO Auto-generated method stub
+		System.out.println("LoginFilter.destroy()");
 	}
 }
