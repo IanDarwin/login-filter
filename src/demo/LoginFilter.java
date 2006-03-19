@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This is the Struts "RequestProcessor" for the login mechanism. It must extend
- * TilesRequestProcessor if you are using Tiles, else it should extend the
- * generic Struts RequestProcessor.
+ * This is the Servlet Filter for the login mechanism. 
  */
 public class LoginFilter implements Filter {
 
