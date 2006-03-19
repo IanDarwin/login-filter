@@ -1,6 +1,6 @@
 <html>
 
-<h1>Welcome, <%= demo.LoginStuff.getUserName(request) %>!</h1>
+<h1>Welcome to 'somepage', <%= demo.LoginStuff.getUserName(request) %>!</h1>
 
 <p>
 If you can see this page, either you logged in successfully,
@@ -10,8 +10,7 @@ or the demo isn't installed correctly!
 
 <hr/>
 
-<p>In this toy demo, the only things you can do now are
-<a href="somepage.jsp">visit this test page</a> or
+<p>In this toy demo, the only thing left to do is to
 <a href="/logoutServlet">log out again</a>.
 </p>
 
