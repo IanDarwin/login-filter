@@ -13,14 +13,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginServlet extends HttpServlet {	
 
+	
+
 	@Override
-	public void doGet(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
-		process(arg0, arg1);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
 	}
 
 	@Override
-	public void doPost(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
-		process(arg0, arg1);
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		process(request, response);
 	}
 
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -29,12 +31,14 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 
         // Authenticate user
-        boolean logged = name.equals("framus") && pass.equals("barstool");
+        boolean logged = name != null && name.equals("framus") && pass != null && pass.equals("barstool");
         if (logged) {
-        	System.err.printf("User %s LOGGED IN", name);
-        	request.getSession().setAttribute("LOGIN_FLAG", "yoda");
+        	System.out.printf("User LOGGED IN successfully as %s%n", name);
+        	request.getSession().setAttribute(LoginStuff.LOGIN_FLAG, name);
+        	response.sendRedirect("/");
+        	return;
         }
-        
-        response.sendRedirect(logged ? "/" : "loginfailure.jsp");
+        System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
+        response.sendRedirect("loginfailure.jsp");
     }
 }
