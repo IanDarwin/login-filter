@@ -1,4 +1,3 @@
-
 <html>
 <head>
 	<title>Login</title>
@@ -8,32 +7,32 @@
 <h3>Login</h3>
 <hr>
 
-<form method="post" action="/login.do?method=login" >
+<form method="post" action="/loginServlet" >
   
 <table border="0">
   <tr> 
     <td>Username </td>
     <td>
-		<input type=text property="username"/>
+		<input type="text" name="username"/>
          <em><font size="-2">(required)</font></em> 
     </td>
   </tr>
   <tr> 
     <td>Password </td>
     <td> 
-         <input type=text property="password"/>
+         <input type="password" name="password"/>
          <em><font size="-2">(required)</font></em> 
     </td>
   </tr>
 </table>
 
   <p>
-    <input type=submit>Login</submit>
+    <input type="submit" value="Login"/>
   </p>
 
 </form>
 
-<p>Thanks for loggin in to our site.</p>
+<p>Thanks for logging in to our site.</p>
 
 </body>
 </html>
