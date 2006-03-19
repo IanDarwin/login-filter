@@ -39,6 +39,6 @@ public class LoginServlet extends HttpServlet {
         	return;
         }
         System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
-        response.sendRedirect("loginfailure.jsp");
+        response.sendRedirect(LoginStuff.LOGIN_PAGE);
     }
 }
