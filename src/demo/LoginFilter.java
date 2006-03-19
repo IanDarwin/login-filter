@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginFilter implements Filter {
 
-	private static final String HOME = "/";
 	
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("LoginFilter.init()");
@@ -28,21 +27,25 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, 
 			FilterChain chain) throws IOException, ServletException {
 
-		System.out.println("LoginFilter.doFilter()");
-
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
+		
+		String requestURI = request.getRequestURI();
+		System.out.printf("LoginFilter.doFilter(): requestURI = %s%n", requestURI);
 
-		Object loggedInToken = request.getSession().getAttribute("LOGIN_FLAG");
+		String loggedInToken = (String)request.getSession().getAttribute(LoginStuff.LOGIN_FLAG);
 
 		if (loggedInToken != null) {
 			// User is logged in, continue processing.
+			System.out.printf("LoginFilter.doFilter(): user is %s%n", loggedInToken);
 			chain.doFilter(req, resp);
 			return;
-		}
-		
-		if (request.getRequestURI().indexOf(HOME) != -1) {
-			// User not logged in and trying to get to login page
+		}		
+
+		if (requestURI.indexOf(LoginStuff.LOGIN_PAGE) != -1 ||
+			requestURI.indexOf(LoginStuff.LOGIN_SERVLET) != -1) {
+			// User not logged in and trying to log in
+			System.out.println("LoginFilter.doFilter(try to login)");
 			chain.doFilter(req, resp);
 			return;
 		}
@@ -50,10 +53,11 @@ public class LoginFilter implements Filter {
 		try {
 			// User not logged in and trying unauthorized access
 			// Redirect user to the login page
-			response.sendRedirect(response.encodeRedirectURL(HOME));
+			System.out.println("LoginFilter.doFilter(-->login)");
+			response.sendRedirect(LoginStuff.LOGIN_PAGE);
 			return;		
 		} catch (IOException e) {
-			System.err.println("Caugth exception during non-login redirect" + e);
+			System.err.println("Caught exception during non-login redirect" + e);
 			throw new RuntimeException(e.toString());	// Do not let them in!
 		}
 	}
