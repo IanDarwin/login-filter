@@ -1,6 +1,7 @@
+<%@taglib  uri="http://www.darwinsys.com/demologintags" prefix="demo" %>
 <html>
 
-<h1>Welcome to 'somepage', <%= demo.LoginStuff.getUserName(request) %>!</h1>
+<h1>Welcome to 'somepage', <demo:username/>!</h1>
 
 <p>
 If you can see this page, either you logged in successfully,
