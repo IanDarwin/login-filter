@@ -31,13 +31,13 @@ public class LoginFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		
 		String requestURI = request.getRequestURI();
-		System.out.printf("LoginFilter.doFilter(): requestURI = %s%n", requestURI);
+		System.out.printf("LoginFilter.doFilter(): requestURI = %s; ", requestURI);
 
 		String loggedInToken = (String)request.getSession().getAttribute(LoginStuff.LOGIN_FLAG);
 
 		if (loggedInToken != null) {
 			// User is logged in, continue processing.
-			System.out.printf("LoginFilter.doFilter(): user is %s%n", loggedInToken);
+			System.out.printf("user is %s%n", loggedInToken);
 			chain.doFilter(req, resp);
 			return;
 		}		
@@ -45,7 +45,7 @@ public class LoginFilter implements Filter {
 		if (requestURI.indexOf(LoginStuff.LOGIN_PAGE) != -1 ||
 			requestURI.indexOf(LoginStuff.LOGIN_SERVLET) != -1) {
 			// User not logged in and trying to log in
-			System.out.println("LoginFilter.doFilter(try to login)");
+			System.out.println("(trying to login)");
 			chain.doFilter(req, resp);
 			return;
 		}
@@ -53,10 +53,11 @@ public class LoginFilter implements Filter {
 		try {
 			// User not logged in and trying unauthorized access
 			// Redirect user to the login page
-			System.out.println("LoginFilter.doFilter(-->login)");
+			System.out.println("(-->login)");
 			response.sendRedirect(LoginStuff.LOGIN_PAGE);
 			return;		
 		} catch (IOException e) {
+			System.out.println();
 			System.err.println("Caught exception during non-login redirect" + e);
 			throw new RuntimeException(e.toString());	// Do not let them in!
 		}
