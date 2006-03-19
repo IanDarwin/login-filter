@@ -6,7 +6,7 @@
 
 	<filter>
 		<filter-name>login</filter-name>
-		<filter-class>rain.Login-Filter</filter-class>
+		<filter-class>rain.LoginFilter</filter-class>
 	</filter>
 
 	<filter>
