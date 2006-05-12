@@ -13,7 +13,7 @@ or the demo isn't installed correctly!
 
 <p>In this toy demo, the only things you can do now are
 <a href="somepage.jsp">visit this test page</a> or
-<a href="/logoutServlet">log out again</a>.
+<a href="logoutServlet">log out again</a>.
 </p>
 
 </html>

@@ -7,7 +7,7 @@
 <h3>Login</h3>
 <hr>
 
-<form method="post" action="/loginServlet" >
+<form method="post" action="loginServlet" >
   
 <table border="0">
   <tr> 

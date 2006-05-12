@@ -34,7 +34,8 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 
         // Authenticate user
-        boolean logged = name != null && name.equals("framus") && pass != null && pass.equals("barstool");
+        boolean logged = name != null && name.equals("framus") &&
+        				 pass != null && pass.equals("barstool");
         if (logged) {
         	System.out.printf("User LOGGED IN successfully as %s%n", name);
 			session.setAttribute(LoginStuff.LOGIN_FLAG, name);
