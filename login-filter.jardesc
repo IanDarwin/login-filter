@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+<jar path="/home/ian/login-filter.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/login-filter/login-filter.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" useSourceFolders="true"/>
+<selectedElements exportClassFiles="false" exportJavaFiles="true" exportOutputFolder="false">
+<javaElement handleIdentifier="=login-filter"/>
+</selectedElements>
+</jardesc>
