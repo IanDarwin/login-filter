@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
  * This is the Servlet Filter for the login mechanism. 
  */
 public class LoginFilter implements Filter {
-
 	
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("LoginFilter.init()");
@@ -52,9 +51,12 @@ public class LoginFilter implements Filter {
 			
 		try {
 			// User not logged in and trying unauthorized access
+			// Save where the user was trying to get to:
+			request.getSession().setAttribute(LoginStuff.TARGET_URI_KEY, requestURI);
 			// Redirect user to the login page
 			System.out.println("(-->login)");
 			response.sendRedirect(LoginStuff.LOGIN_PAGE);
+			// DO NOT do chain.doFileter for this case!
 			return;		
 		} catch (IOException e) {
 			System.out.println();
