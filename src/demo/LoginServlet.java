@@ -40,7 +40,8 @@ public class LoginServlet extends HttpServlet {
         	System.out.printf("User LOGGED IN successfully as %s%n", name);
 			session.setAttribute(LoginStuff.LOGIN_FLAG, name);
 			String target = (String) session.getAttribute(LoginStuff.TARGET_URI_KEY);
-        	response.sendRedirect(target != null ? target : "/");
+        	session.removeAttribute(LoginStuff.TARGET_URI_KEY);
+			response.sendRedirect(target != null ? target : "/");
         	return;
         }
         System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
