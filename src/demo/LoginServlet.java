@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 	 * @param pass The "secret" password.
 	 * @return True if the user name & password are valid here.
 	 */
-	private boolean checkCredentia(String name, String pass) {
+	private boolean checkCredentia(String name, String pass) throws IOException, ServletException {
 		return name != null && name.equals("framus") &&
         				 pass != null && pass.equals("barstool");
 	}
