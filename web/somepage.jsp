@@ -16,8 +16,10 @@ or the demo isn't installed correctly!
 
 <hr/>
 
-<p>In this toy demo, the only thing left to do is to
-<a href="logoutServlet">log out again</a>.
+<p>
+<a href=".">Home</a>
+-
+<a href="logoutServlet">Log out</a>.
 </p>
 
 </body>
