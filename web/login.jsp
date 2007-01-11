@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Login</title>
+	<title>Please Log In</title>
 </head>
 
 <body>
@@ -8,20 +8,20 @@
 <hr>
 
 <form method="post" action="loginServlet" >
-  
+
 <table border="0">
-  <tr> 
+  <tr>
     <td>Username </td>
     <td>
 		<input type="text" name="username"/>
-         <em><font size="-2">(required)</font></em> 
+         <em><font size="-2">(required)</font></em>
     </td>
   </tr>
-  <tr> 
+  <tr>
     <td>Password </td>
-    <td> 
+    <td>
          <input type="password" name="password"/>
-         <em><font size="-2">(required)</font></em> 
+         <em><font size="-2">(required)</font></em>
     </td>
   </tr>
 </table>
