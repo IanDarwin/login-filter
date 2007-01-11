@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * This class is the Login/Logout handler.
  */
-public class LoginServlet extends HttpServlet {	
+public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1456987092097573503L;
 
@@ -34,9 +34,7 @@ public class LoginServlet extends HttpServlet {
 		String pass = request.getParameter("password");
 
         // Authenticate user
-        boolean logged = name != null && name.equals("framus") &&
-        				 pass != null && pass.equals("barstool");
-        if (logged) {
+        if (checkCredentia(name, pass)) {
         	System.out.printf("User LOGGED IN successfully as %s%n", name);
 			session.setAttribute(LoginStuff.LOGIN_FLAG, name);
 			String target = (String) session.getAttribute(LoginStuff.TARGET_URI_KEY);
@@ -47,4 +45,16 @@ public class LoginServlet extends HttpServlet {
         System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
         response.sendRedirect(LoginStuff.LOGIN_PAGE);
     }
+
+	/**
+	 * WARNING: for now this is bogus, just a demo;
+	 * Check that the user has permission to log in to this site.
+	 * @param name The user name
+	 * @param pass The "secret" password.
+	 * @return True if the user name & password are valid here.
+	 */
+	private boolean checkCredentia(String name, String pass) {
+		return name != null && name.equals("framus") &&
+        				 pass != null && pass.equals("barstool");
+	}
 }
