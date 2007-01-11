@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This is the Servlet Filter for the login mechanism. 
+ * This is the Servlet Filter for the login mechanism.
  */
 public class LoginFilter implements Filter {
-	
+
 	public void init(FilterConfig config) throws ServletException {
 		System.out.println("LoginFilter.init()");
 	}
@@ -23,12 +23,12 @@ public class LoginFilter implements Filter {
 	/** Allow the request if the user is logged in.
 	 * Called before every request, so keep it light weight.
 	 */
-	public void doFilter(ServletRequest req, ServletResponse resp, 
+	public void doFilter(ServletRequest req, ServletResponse resp,
 			FilterChain chain) throws IOException, ServletException {
 
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
-		
+
 		String requestURI = request.getRequestURI();
 		System.out.printf("LoginFilter.doFilter(): requestURI = %s; ", requestURI);
 
@@ -39,16 +39,17 @@ public class LoginFilter implements Filter {
 			System.out.printf("user is %s%n", loggedInToken);
 			chain.doFilter(req, resp);
 			return;
-		}		
+		}
 
 		if (requestURI.indexOf(LoginStuff.LOGIN_PAGE) != -1 ||
-			requestURI.indexOf(LoginStuff.LOGIN_SERVLET) != -1) {
+			requestURI.indexOf(LoginStuff.LOGIN_SERVLET) != -1 ||
+			requestURI.indexOf(LoginStuff.FAVICON) != -1) {
 			// User not logged in and trying to log in
 			System.out.println("(trying to login)");
 			chain.doFilter(req, resp);
 			return;
 		}
-			
+
 		try {
 			// User not logged in and trying unauthorized access
 			// Save where the user was trying to get to:
@@ -57,7 +58,7 @@ public class LoginFilter implements Filter {
 			System.out.println("(-->login)");
 			response.sendRedirect(LoginStuff.LOGIN_PAGE);
 			// DO NOT do chain.doFileter for this case!
-			return;		
+			return;
 		} catch (IOException e) {
 			System.out.println();
 			System.err.println("Caught exception during non-login redirect" + e);
