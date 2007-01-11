@@ -35,9 +35,9 @@ public class LoginFilter implements Filter {
 		String loggedInToken = (String)request.getSession().getAttribute(LoginStuff.LOGIN_FLAG);
 
 		if (loggedInToken != null) {
-			// User is logged in, continue processing.
+			// User is logged in, continue processing, override getRemoteUser in request object.
 			System.out.printf("user is %s%n", loggedInToken);
-			chain.doFilter(req, resp);
+			chain.doFilter(new LoginFilterHTTPServletRequest((HttpServletRequest) req, loggedInToken), resp);
 			return;
 		}
 
