@@ -57,7 +57,7 @@ public class LoginFilter implements Filter {
 			// Redirect user to the login page
 			System.out.println("(-->login)");
 			response.sendRedirect(LoginStuff.LOGIN_PAGE);
-			// DO NOT do chain.doFileter for this case!
+			// DO NOT do chain.doFilter for this case!
 			return;
 		} catch (IOException e) {
 			System.out.println();
