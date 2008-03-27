@@ -35,7 +35,7 @@ public class LogoutServlet extends HttpServlet {
 
         request.getSession().removeAttribute(LoginStuff.LOGIN_FLAG);
 
-        response.sendRedirect(".");
+        response.sendRedirect("/");
     }
 
 
