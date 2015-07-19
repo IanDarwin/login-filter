@@ -7,7 +7,7 @@ It is necessarily incomplete (there is no database checking so the login name an
 password are hardcoded); in short, it has been cut down to just the bare essentials 
 needed to demonstrate this type of login mechanism.
 
-You can use this for anything without fee.
+You can use this for anything with credit and without fee.
 
 For a more comprehensive implementation of this idea (unrelated to my
 implementation), look  for a project called "securityfilter" (which is currently at
