@@ -13,12 +13,12 @@ For a more comprehensive implementation of this idea (unrelated to my
 implementation), look  for a project called "securityfilter" (which is currently at
 http://securityfilter.sourceforge.net/).
 
-== ToDo
+-- Production?
 
-. Use request.login() to obviate the need for the LoginFilterHTTPServletRequest.java
-. The redirect path is hard-coded to /login.jsp;
-if deployed in a sub-directory webapp (e.g., not at the root of a virtual host),
-it redirects to this page, which of course either fails or goes to the wrong page.
+If you are going to use this in production, you can either change the login() method
+here to use JPA or JDBC to lookup the encrytped password in your database, or, set up
+a Java EE Real with users, then use the
+Servlet 3.0 request.login() to verify the user/password AND to obviate the need for the LoginFilterHTTPServletRequest.java
 
 Ian Darwin
 http://www.darwinsys.com/

@@ -33,17 +33,22 @@ public class LoginServlet extends HttpServlet {
 		String name = request.getParameter("username");
 		String pass = request.getParameter("password");
 
-        // Authenticate user
-        if (checkCredentia(name, pass)) {
-        	System.out.printf("User LOGGED IN successfully as %s%n", name);
+        // Authenticate user - use our this.login() for demo, or request.login() for real,
+		// after setting up a JavaEE Realm.
+		try {
+			login(name, pass);
+			// This will make request.getRemoteUser work, with our hack in the filter.
+			// Not needed if you are using request.login().
 			session.setAttribute(LoginStuff.LOGIN_FLAG, name);
+        	System.out.printf("User LOGGED IN successfully as %s%n", name);
 			String target = (String) session.getAttribute(LoginStuff.TARGET_URI_KEY);
         	session.removeAttribute(LoginStuff.TARGET_URI_KEY);
-			response.sendRedirect(target != null ? target : "/");
+			response.sendRedirect(target != null ? target : ".");
         	return;
-        }
-        System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
-        response.sendRedirect(LoginStuff.LOGIN_PAGE);
+        } catch (ServletException ex) {
+			System.out.printf("User DID NOT login in as %s/%s%n", name, pass);
+			response.sendRedirect(LoginStuff.LOGIN_PAGE);
+		}
     }
 
 	/**
@@ -53,8 +58,11 @@ public class LoginServlet extends HttpServlet {
 	 * @param pass The "secret" password.
 	 * @return True if the user name & password are valid here.
 	 */
-	private boolean checkCredentia(String name, String pass) throws IOException, ServletException {
-		return name != null && name.equals("framus") &&
-        				 pass != null && pass.equals("barstool");
+	private void login(String name, String pass) throws ServletException {
+		if (name != null && name.equals("framus") &&
+        				 pass != null && pass.equals("barstool")) {
+			return;
+		}
+		throw new ServletException("Invalid login");
 	}
 }
