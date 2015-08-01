@@ -54,6 +54,8 @@ public class LoginServlet extends HttpServlet {
     }
 
 	/**
+	 * This is coded to be similar in API to the Servlet 3.0
+	 * "request.login" method, which uses the Java EE Realm.
 	 * WARNING: for now this is bogus, just a demo;
 	 * Check that the user has permission to log in to this site.
 	 * @param name The user name
