@@ -7,6 +7,14 @@
 <h3>Login</h3>
 <hr>
 
+<%
+	String mesg = (String)request.getAttribute("message");
+	if (mesg != null) {
+		out.println("<p style='color:red;'>" + mesg + "</p>");
+		request.removeAttribute("message");
+	}
+%>
+
 <form method="post" action="loginServlet" >
 
 <table border="0">
