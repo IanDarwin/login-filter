@@ -10,6 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * This is the Servlet Filter for the login mechanism.
@@ -68,5 +70,24 @@ public class LoginFilter implements Filter {
 
 	public void destroy() {
 		System.out.println("LoginFilter.destroy()");
+	}
+
+	/**
+	 * Delegating HTTPServletRequest that just overrides a few methods such as getRemoteUser(), since
+	 * we are handling our own login...
+	 */
+	public class LoginFilterHTTPServletRequest extends HttpServletRequestWrapper {
+
+		private String userName;
+
+		public LoginFilterHTTPServletRequest(HttpServletRequest request, String userName) {
+			super(request);
+			this.userName = userName;
+		}
+
+		@Override
+		public String getRemoteUser() {
+			return this.userName;
+		}
 	}
 }
