@@ -33,7 +33,7 @@ public class LogoutServlet extends HttpServlet {
 			System.out.printf("Logging out user %s%n", name);
 		}
 
-        request.getSession().removeAttribute(LoginStuff.LOGIN_FLAG);
+        request.getSession().removeAttribute(LoginConstants.LOGIN_FLAG);
 
         response.sendRedirect(".");
     }

@@ -45,10 +45,10 @@ public class LoginServlet extends HttpServlet {
 		}
 		// This will make request.getRemoteUser work, with our hack in the filter.
 		// Not needed if you are using request.login().
-		session.setAttribute(LoginStuff.LOGIN_FLAG, name);
+		session.setAttribute(LoginConstants.LOGIN_FLAG, name);
 		System.out.printf("User LOGGED IN successfully as %s%n", name);
-		String target = (String) session.getAttribute(LoginStuff.TARGET_URI_KEY);
-		session.removeAttribute(LoginStuff.TARGET_URI_KEY);
+		String target = (String) session.getAttribute(LoginConstants.TARGET_URI_KEY);
+		session.removeAttribute(LoginConstants.TARGET_URI_KEY);
 		response.sendRedirect(target != null ? target : ".");
 		return;
     }

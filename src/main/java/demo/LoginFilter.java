@@ -33,7 +33,7 @@ public class LoginFilter implements Filter {
 		String requestURI = request.getRequestURI();
 		System.out.printf("LoginFilter.doFilter(): requestURI = %s; ", requestURI);
 
-		String loggedInToken = (String)request.getSession().getAttribute(LoginStuff.LOGIN_FLAG);
+		String loggedInToken = (String)request.getSession().getAttribute(LoginConstants.LOGIN_FLAG);
 
 		if (loggedInToken != null) {
 			// User is logged in, continue processing, override getRemoteUser in request object.
@@ -42,9 +42,9 @@ public class LoginFilter implements Filter {
 			return;
 		}
 
-		if (requestURI.indexOf(LoginStuff.LOGIN_PAGE) != -1 ||
-			requestURI.indexOf(LoginStuff.LOGIN_SERVLET) != -1 ||
-			requestURI.indexOf(LoginStuff.FAVICON) != -1) {
+		if (requestURI.indexOf(LoginConstants.LOGIN_PAGE) != -1 ||
+			requestURI.indexOf(LoginConstants.LOGIN_SERVLET) != -1 ||
+			requestURI.indexOf(LoginConstants.FAVICON) != -1) {
 			// User not logged in and trying to log in
 			System.out.println("(trying to login)");
 			chain.doFilter(req, resp);
@@ -54,10 +54,10 @@ public class LoginFilter implements Filter {
 		try {
 			// User not logged in and trying unauthorized access
 			// Save where the user was trying to get to:
-			request.getSession().setAttribute(LoginStuff.TARGET_URI_KEY, requestURI);
+			request.getSession().setAttribute(LoginConstants.TARGET_URI_KEY, requestURI);
 			// Redirect user to the login page
 			System.out.println("(-->login)");
-			response.sendRedirect(LoginStuff.LOGIN_PAGE);
+			response.sendRedirect(LoginConstants.LOGIN_PAGE);
 			// DO NOT do chain.doFilter for this case!
 			return;
 		} catch (IOException e) {
