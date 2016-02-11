@@ -15,10 +15,11 @@ http://securityfilter.sourceforge.net/).
 
 -- Production?
 
-If you are going to use this in production, you can either change the login() method
-here to use JPA or JDBC to lookup the encrytped password in your database, or, set up
-a Java EE Real with users, then use the
-Servlet 3.0 request.login() to verify the user/password AND to obviate the need for the LoginFilterHTTPServletRequest.java
+If you are going to use this in production, you can either change the
+login() method here to use JPA or JDBC to lookup the encrytped password in
+your database, or, set up a Java EE server for real with users, then use the Servlet
+3.0 request.login() to verify the user/password AND to obviate the need for
+the LoginFilterHTTPServletRequest.java
 
 Ian Darwin
 http://www.darwinsys.com/
